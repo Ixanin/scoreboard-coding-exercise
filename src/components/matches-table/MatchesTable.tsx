@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import MatchItem from '../match-item/MatchItem';
-import { createRandomInitialState } from '../../utils/createRandomInitialState.ts';
-
-export const initialState = createRandomInitialState();
+import { useMatchesReducer } from './hooks/useMatchesReducer';
+import { useMatchIntervals } from './hooks/useMatchIntervals';
 
 const MatchesTable = () => {
-  const [state] = useState(initialState);
+  const { state, dispatch, getSummary } = useMatchesReducer();
+
+  useMatchIntervals(state.matches, dispatch);
 
   return (
     <div className="matches-table my-6">

@@ -1,12 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
 import { createRandomInitialState } from './';
 import { MatchStatus, CountryCode } from '../enums';
+import { MaxNumberOfMatches, MinNumberOfMatches } from '../constants';
 
 describe('createRandomInitialState', () => {
   it('should generate between 5 and 10 matches', () => {
     const state = createRandomInitialState();
-    expect(state.matches.length).toBeGreaterThanOrEqual(5);
-    expect(state.matches.length).toBeLessThanOrEqual(10);
+    expect(state.matches.length).toBeGreaterThanOrEqual(MinNumberOfMatches);
+    expect(state.matches.length).toBeLessThanOrEqual(MaxNumberOfMatches);
     expect(state.finishedGames).toEqual([]);
   });
 

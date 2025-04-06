@@ -12,7 +12,7 @@ const TeamItem: React.FC<TeamItemProps> = ({ code }) => {
       <Flag
         code={code}
         data-testid={`flag-${code}`}
-        style={{ width: '48px', marginRight: '8px' }}
+        style={{ width: '48px', height: '48px', marginRight: '8px' }}
       />
       {CountryName[code]}
     </div>

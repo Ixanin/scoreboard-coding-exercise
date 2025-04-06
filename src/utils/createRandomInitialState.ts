@@ -4,11 +4,18 @@ import {
   Match,
   MatchesState,
 } from '../components/matches-table/reducers/matchesReducer.ts';
+import {
+  MaxNumberOfMatches,
+  MaxTimeToStartMatch,
+  MinNumberOfMatches,
+} from '../constants';
 
 export const createRandomInitialState = (): MatchesState => {
   const countryCodes = Object.values(CountryCode);
 
-  const numberOfMatches = Math.floor(Math.random() * 6) + 5;
+  const numberOfMatches =
+    Math.floor(Math.random() * MinNumberOfMatches) +
+    (MaxNumberOfMatches - MinNumberOfMatches);
 
   const matches: Match[] = [];
   const usedCountryCodes: CountryCode[] = [];
@@ -24,7 +31,8 @@ export const createRandomInitialState = (): MatchesState => {
       usedCountryCodes.length = 0;
     }
 
-    const startTime = Date.now() + Math.floor(Math.random() * 15000);
+    const startTime =
+      Date.now() + Math.floor(Math.random() * MaxTimeToStartMatch);
 
     matches.push({
       id: uuidv4(),

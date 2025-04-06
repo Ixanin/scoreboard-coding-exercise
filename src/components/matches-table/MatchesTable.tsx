@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Flag from 'react-world-flags';
+import { Country } from '../../enums/';
 
 enum MatchStatus {
   NOT_STARTED = 'NOT_STARTED',
@@ -12,32 +14,32 @@ export const initialState = {
     {
       id: 0,
       status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Mexico', countryCode: 'mx', score: 0 },
-      awayTeam: { name: 'Canada', countryCode: 'ca', score: 0 },
+      homeTeam: { name: 'Mexico', code: Country.Mexico, score: 0 },
+      awayTeam: { name: 'Canada', code: Country.Canada, score: 0 },
     },
     {
       id: 1,
       status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Spain', countryCode: 'es', score: 0 },
-      awayTeam: { name: 'Brazil', countryCode: 'br', score: 0 },
+      homeTeam: { name: 'Spain', code: Country.Spain, score: 0 },
+      awayTeam: { name: 'Brazil', code: Country.Brazil, score: 0 },
     },
     {
       id: 2,
       status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Germany', countryCode: 'de', score: 0 },
-      awayTeam: { name: 'France', countryCode: 'fr', score: 0 },
+      homeTeam: { name: 'Germany', code: Country.Germany, score: 0 },
+      awayTeam: { name: 'France', code: Country.France, score: 0 },
     },
     {
       id: 3,
       status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Uruguay', countryCode: 'uy', score: 0 },
-      awayTeam: { name: 'Italy', countryCode: 'it', score: 0 },
+      homeTeam: { name: 'Uruguay', code: Country.Uruguay, score: 0 },
+      awayTeam: { name: 'Italy', code: Country.Italy, score: 0 },
     },
     {
       id: 4,
       status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Argentina', countryCode: 'ar', score: 0 },
-      awayTeam: { name: 'Australia', countryCode: 'au', score: 0 },
+      homeTeam: { name: 'Argentina', code: Country.Argentina, score: 0 },
+      awayTeam: { name: 'Australia', code: Country.Australia, score: 0 },
     },
   ],
 };
@@ -59,9 +61,25 @@ const MatchesTable = () => {
         <tbody>
           {state.matches.map((match) => (
             <tr key={match.id}>
-              <td className="border px-4 py-2">{match.homeTeam.name}</td>
-              <td className="border px-4 py-2">{match.awayTeam.name}</td>
-              <td className="border px-4 py-2">
+              <td className="border px-4 py-2 text-center">
+                <div className="flex items-center justify-center">
+                  <Flag
+                    code={match.homeTeam.code}
+                    style={{ width: '48px', marginRight: '8px' }}
+                  />
+                  {match.homeTeam.name}
+                </div>
+              </td>
+              <td className="border px-4 py-2 text-center">
+                <div className="flex items-center justify-center">
+                  <Flag
+                    code={match.awayTeam.code}
+                    style={{ width: '48px', marginRight: '8px' }}
+                  />
+                  {match.awayTeam.name}
+                </div>
+              </td>
+              <td className="border px-4 py-2 text-center">
                 {match.homeTeam.score} - {match.awayTeam.score}
               </td>
             </tr>

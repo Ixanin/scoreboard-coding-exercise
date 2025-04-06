@@ -8,7 +8,6 @@ describe('createRandomInitialState', () => {
     const state = createRandomInitialState();
     expect(state.matches.length).toBeGreaterThanOrEqual(MinNumberOfMatches);
     expect(state.matches.length).toBeLessThanOrEqual(MaxNumberOfMatches);
-    expect(state.finishedGames).toEqual([]);
   });
 
   it('should set all matches to NOT_STARTED status', () => {

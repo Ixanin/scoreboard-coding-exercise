@@ -3,7 +3,7 @@ import { useMatchesReducer } from './hooks/useMatchesReducer';
 import { useMatchIntervals } from './hooks/useMatchIntervals';
 
 const MatchesTable = () => {
-  const { state, dispatch, getSummary } = useMatchesReducer();
+  const { state, dispatch } = useMatchesReducer();
 
   useMatchIntervals(state.matches, dispatch);
 

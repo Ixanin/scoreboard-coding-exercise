@@ -1,14 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import { CountryCode, MatchStatus } from '../enums';
-import {
-  Match,
-  MatchesState,
-} from '../components/matches-table/reducers/matchesReducer.ts';
+import { MatchesState } from '../components/matches-table/reducers/matchesReducer.ts';
 import {
   MaxNumberOfMatches,
   MaxTimeToStartMatch,
   MinNumberOfMatches,
 } from '../constants';
+import { Match } from '../types/types.ts';
 
 export const createRandomInitialState = (): MatchesState => {
   const countryCodes = Object.values(CountryCode);
@@ -52,7 +50,6 @@ export const createRandomInitialState = (): MatchesState => {
 
   return {
     matches,
-    finishedGames: [],
   };
 };
 

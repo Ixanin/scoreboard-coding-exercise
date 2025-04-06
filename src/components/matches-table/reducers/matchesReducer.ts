@@ -4,7 +4,6 @@ import { Match } from '../../../types/types.ts';
 
 export interface MatchesState {
   matches: Match[];
-  finishedGames: Match[];
 }
 
 export const initialState = createRandomInitialState();
@@ -96,13 +95,19 @@ export const matchesReducer = (
         ),
       };
 
-    case MatchActionTypes.FINISH_MATCH:
-      return {
-        ...state,
-        matches: state.matches.filter(
-          (match) => match.id !== action.payload.matchId
-        ),
-      };
+    case MatchActionTypes.FINISH_MATCH: {
+      const finishedMatch = state.matches.find(
+        (match) => match.id === action.payload.matchId
+      );
+      return finishedMatch
+        ? {
+            ...state,
+            matches: state.matches.filter(
+              (match) => match.id !== action.payload.matchId
+            ),
+          }
+        : state;
+    }
 
     case MatchActionTypes.TICK_MATCH_MINUTE:
       return {
@@ -156,21 +161,3 @@ export const tickMatchMinute = (matchId: string): TickMatchMinuteAction => ({
   type: MatchActionTypes.TICK_MATCH_MINUTE,
   payload: { matchId },
 });
-
-// Selectors
-export const getFinishedMatchesSummary = (state: MatchesState) => {
-  return state.matches
-    .filter((match) => match.status === MatchStatus.FINISHED)
-    .sort((a, b) => {
-      // First sort by total score (descending)
-      const totalScoreA = a.homeTeam.score + a.awayTeam.score;
-      const totalScoreB = b.homeTeam.score + b.awayTeam.score;
-
-      if (totalScoreB !== totalScoreA) {
-        return totalScoreB - totalScoreA;
-      }
-
-      // If total scores are equal, sort by most recently started match (descending)
-      return (b.startTime || 0) - (a.startTime || 0);
-    });
-};

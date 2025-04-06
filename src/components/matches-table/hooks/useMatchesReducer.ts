@@ -1,10 +1,9 @@
-import { useReducer, useCallback, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 import {
   matchesReducer,
   initialState,
   updateMatchStatus,
   tickMatchMinute,
-  getFinishedMatchesSummary,
 } from '../reducers/matchesReducer';
 import { MatchStatus } from '../../../enums';
 import { DurationOfHalfTimeBreak, TickTime } from '../../../constants';
@@ -39,13 +38,8 @@ export const useMatchesReducer = () => {
     };
   }, [state.matches]);
 
-  const getSummary = useCallback(() => {
-    return getFinishedMatchesSummary(state);
-  }, [state]);
-
   return {
     state,
     dispatch,
-    getSummary,
   };
 };

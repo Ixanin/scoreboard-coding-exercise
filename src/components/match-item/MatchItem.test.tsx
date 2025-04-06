@@ -1,13 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import MatchItem from './MatchItem';
-import { Country } from '../../enums/';
+import { Country, MatchStatus } from '../../enums/';
 
 describe('MatchItem', () => {
   const mockedMatch = {
     id: 1,
     homeTeam: { name: 'Spain', code: Country.Spain, score: 2 },
     awayTeam: { name: 'Brazil', code: Country.Brazil, score: 1 },
+    status: MatchStatus.IN_PROGRESS,
+    matchMinute: 45,
   };
 
   it('renders with correct data-testid', () => {
@@ -27,12 +29,18 @@ describe('MatchItem', () => {
     expect(screen.getByText('2 - 1')).toBeInTheDocument();
   });
 
-  it('renders flag components', () => {
+  it('displays match status and minute for in-progress matches', () => {
     render(<MatchItem match={mockedMatch} />);
-    const homeFlag = screen.getByTestId(`flag-${mockedMatch.homeTeam.code}`);
-    const awayFlag = screen.getByTestId(`flag-${mockedMatch.awayTeam.code}`);
+    expect(screen.getByText(/IN_PROGRESS \(45'\)/)).toBeInTheDocument();
+  });
 
-    expect(homeFlag).toBeInTheDocument();
-    expect(awayFlag).toBeInTheDocument();
+  it('does not display minute for matches not in progress', () => {
+    const notStartedMatch = {
+      ...mockedMatch,
+      status: MatchStatus.NOT_STARTED,
+    };
+    render(<MatchItem match={notStartedMatch} />);
+    expect(screen.getByText('NOT_STARTED')).toBeInTheDocument();
+    expect(screen.queryByText(/\(\d+'\)/)).not.toBeInTheDocument();
   });
 });

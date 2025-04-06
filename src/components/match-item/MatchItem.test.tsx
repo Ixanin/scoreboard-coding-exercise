@@ -1,13 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import MatchItem from './MatchItem';
-import { Country, MatchStatus } from '../../enums/';
+import { CountryCode, MatchStatus } from '../../enums/';
 
 describe('MatchItem', () => {
   const mockedMatch = {
-    id: 1,
-    homeTeam: { name: 'Spain', code: Country.Spain, score: 2 },
-    awayTeam: { name: 'Brazil', code: Country.Brazil, score: 1 },
+    id: '1',
+    homeTeam: { code: CountryCode.Spain, score: 2 },
+    awayTeam: { code: CountryCode.Brazil, score: 1 },
     status: MatchStatus.IN_PROGRESS,
     matchMinute: 45,
   };

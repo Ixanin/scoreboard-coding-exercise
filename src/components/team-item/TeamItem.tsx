@@ -1,13 +1,12 @@
 import React from 'react';
 import Flag from 'react-world-flags';
-import { Country } from '../../enums/';
+import { CountryCode, CountryName } from '../../enums/';
 
 interface TeamItemProps {
-  name: string;
-  code: Country;
+  code: CountryCode;
 }
 
-const TeamItem: React.FC<TeamItemProps> = ({ name, code }) => {
+const TeamItem: React.FC<TeamItemProps> = ({ code }) => {
   return (
     <div className="flex items-center justify-center">
       <Flag
@@ -15,7 +14,7 @@ const TeamItem: React.FC<TeamItemProps> = ({ name, code }) => {
         data-testid={`flag-${code}`}
         style={{ width: '48px', marginRight: '8px' }}
       />
-      {name}
+      {CountryName[code]}
     </div>
   );
 };

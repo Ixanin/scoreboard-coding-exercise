@@ -1,42 +1,43 @@
 import { useState } from 'react';
-import { Country, MatchStatus } from '../../enums/';
+import { CountryCode, MatchStatus } from '../../enums/';
 import MatchItem from '../match-item/MatchItem';
+import { v4 as uuidv4 } from 'uuid';
 
 export const initialState = {
   matches: [
     {
-      id: 0,
+      id: uuidv4(),
       status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Mexico', code: Country.Mexico, score: 0 },
-      awayTeam: { name: 'Canada', code: Country.Canada, score: 0 },
+      homeTeam: { code: CountryCode.Mexico, score: 0 },
+      awayTeam: { code: CountryCode.Canada, score: 0 },
       matchMinute: 0,
     },
     {
-      id: 1,
+      id: uuidv4(),
       status: MatchStatus.IN_PROGRESS,
-      homeTeam: { name: 'Spain', code: Country.Spain, score: 1 },
-      awayTeam: { name: 'Brazil', code: Country.Brazil, score: 0 },
+      homeTeam: { code: CountryCode.Spain, score: 1 },
+      awayTeam: { code: CountryCode.Brazil, score: 0 },
       matchMinute: 0,
     },
     {
-      id: 2,
+      id: uuidv4(),
       status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Germany', code: Country.Germany, score: 0 },
-      awayTeam: { name: 'France', code: Country.France, score: 0 },
+      homeTeam: { code: CountryCode.Germany, score: 0 },
+      awayTeam: { code: CountryCode.France, score: 0 },
       matchMinute: 0,
     },
     {
-      id: 3,
+      id: uuidv4(),
       status: MatchStatus.IN_PROGRESS,
-      homeTeam: { name: 'Uruguay', code: Country.Uruguay, score: 2 },
-      awayTeam: { name: 'Italy', code: Country.Italy, score: 2 },
+      homeTeam: { code: CountryCode.Uruguay, score: 2 },
+      awayTeam: { code: CountryCode.Italy, score: 2 },
       matchMinute: 0,
     },
     {
-      id: 4,
+      id: uuidv4(),
       status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Argentina', code: Country.Argentina, score: 0 },
-      awayTeam: { name: 'Australia', code: Country.Australia, score: 0 },
+      homeTeam: { name: 'Argentina', code: CountryCode.Argentina, score: 0 },
+      awayTeam: { name: 'Australia', code: CountryCode.Australia, score: 0 },
       matchMinute: 0,
     },
   ],

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Flag from 'react-world-flags';
 import { Country, MatchStatus } from '../../enums/';
+import MatchItem from '../match-item/MatchItem';
 
 export const initialState = {
   matches: [
@@ -38,7 +38,7 @@ export const initialState = {
 };
 
 const MatchesTable = () => {
-  const [state, setState] = useState(initialState);
+  const [state] = useState(initialState);
 
   return (
     <div className="matches-table my-6">
@@ -53,29 +53,7 @@ const MatchesTable = () => {
         </thead>
         <tbody>
           {state.matches.map((match) => (
-            <tr key={match.id}>
-              <td className="border px-4 py-2 text-center">
-                <div className="flex items-center justify-center">
-                  <Flag
-                    code={match.homeTeam.code}
-                    style={{ width: '48px', marginRight: '8px' }}
-                  />
-                  {match.homeTeam.name}
-                </div>
-              </td>
-              <td className="border px-4 py-2 text-center">
-                <div className="flex items-center justify-center">
-                  <Flag
-                    code={match.awayTeam.code}
-                    style={{ width: '48px', marginRight: '8px' }}
-                  />
-                  {match.awayTeam.name}
-                </div>
-              </td>
-              <td className="border px-4 py-2 text-center">
-                {match.homeTeam.score} - {match.awayTeam.score}
-              </td>
-            </tr>
+            <MatchItem key={match.id} match={match} />
           ))}
         </tbody>
       </table>

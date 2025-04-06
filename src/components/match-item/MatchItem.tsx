@@ -1,6 +1,6 @@
 import React from 'react';
-import Flag from 'react-world-flags';
 import { Country } from '../../enums/';
+import TeamItem from '../team-item/TeamItem';
 
 interface Team {
   name: string;
@@ -18,26 +18,12 @@ interface MatchItemProps {
 
 const MatchItem: React.FC<MatchItemProps> = ({ match }) => {
   return (
-    <tr key={match.id} data-testid={`match-item-${match.id}`}>
+    <tr data-testid={`match-item-${match.id}`}>
       <td className="border px-4 py-2 text-center">
-        <div className="flex items-center justify-center">
-          <Flag
-            code={match.homeTeam.code}
-            data-testid={`flag-${match.homeTeam.code}`}
-            style={{ width: '48px', marginRight: '8px' }}
-          />
-          {match.homeTeam.name}
-        </div>
+        <TeamItem name={match.homeTeam.name} code={match.homeTeam.code} />
       </td>
       <td className="border px-4 py-2 text-center">
-        <div className="flex items-center justify-center">
-          <Flag
-            data-testid={`flag-${match.awayTeam.code}`}
-            code={match.awayTeam.code}
-            style={{ width: '48px', marginRight: '8px' }}
-          />
-          {match.awayTeam.name}
-        </div>
+        <TeamItem name={match.awayTeam.name} code={match.awayTeam.code} />
       </td>
       <td className="border px-4 py-2 text-center">
         {match.homeTeam.score} - {match.awayTeam.score}

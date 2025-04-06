@@ -12,8 +12,8 @@ export enum MatchActionTypes {
   UPDATE_SCORE = 'UPDATE_SCORE',
   UPDATE_MATCH_STATUS = 'UPDATE_MATCH_STATUS',
   FINISH_MATCH = 'FINISH_MATCH',
-  GET_SUMMARY = 'GET_SUMMARY',
   TICK_MATCH_MINUTE = 'TICK_MATCH_MINUTE',
+  DELETE_MATCH = 'DELETE_MATCH',
 }
 
 interface UpdateScoreAction {
@@ -22,6 +22,13 @@ interface UpdateScoreAction {
     matchId: string;
     homeTeamScore: number;
     awayTeamScore: number;
+  };
+}
+
+interface DeleteMatchAction {
+  type: MatchActionTypes.DELETE_MATCH;
+  payload: {
+    matchId: string;
   };
 }
 
@@ -51,6 +58,7 @@ export type MatchAction =
   | UpdateScoreAction
   | UpdateMatchStatusAction
   | FinishMatchAction
+  | DeleteMatchAction
   | TickMatchMinuteAction;
 
 export const matchesReducer = (
@@ -129,6 +137,14 @@ export const matchesReducer = (
         ),
       };
 
+    case MatchActionTypes.DELETE_MATCH:
+      return {
+        ...state,
+        matches: state.matches.filter(
+          (match) => match.id !== action.payload.matchId
+        ),
+      };
+
     default:
       return state;
   }
@@ -152,8 +168,8 @@ export const updateMatchStatus = (
   payload: { matchId, status },
 });
 
-export const finishMatch = (matchId: string): FinishMatchAction => ({
-  type: MatchActionTypes.FINISH_MATCH,
+export const deleteMatch = (matchId: string): DeleteMatchAction => ({
+  type: MatchActionTypes.DELETE_MATCH,
   payload: { matchId },
 });
 

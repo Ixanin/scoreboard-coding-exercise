@@ -1,9 +1,14 @@
 import MatchItem from '../match-item/MatchItem';
 import { useMatchesReducer } from './hooks/useMatchesReducer';
 import { useMatchIntervals } from './hooks/useMatchIntervals';
+import { deleteMatch } from './reducers/matchesReducer.ts';
 
 const MatchesTable = () => {
   const { state, dispatch } = useMatchesReducer();
+
+  const handleDeleteMatch = (matchId: string) => {
+    dispatch(deleteMatch(matchId));
+  };
 
   useMatchIntervals(state.matches, dispatch);
 
@@ -21,7 +26,11 @@ const MatchesTable = () => {
         </thead>
         <tbody>
           {state.matches.map((match) => (
-            <MatchItem key={match.id} match={match} />
+            <MatchItem
+              key={match.id}
+              match={match}
+              handleDeleteMatch={handleDeleteMatch}
+            />
           ))}
         </tbody>
       </table>

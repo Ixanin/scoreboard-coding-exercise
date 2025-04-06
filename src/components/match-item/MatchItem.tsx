@@ -15,9 +15,10 @@ interface MatchItemProps {
     status: MatchStatus;
     matchMinute: number;
   };
+  handleDeleteMatch: (matchId: string) => void;
 }
 
-const MatchItem: React.FC<MatchItemProps> = ({ match }) => {
+const MatchItem: React.FC<MatchItemProps> = ({ match, handleDeleteMatch }) => {
   return (
     <tr data-testid={`match-item-${match.id}`}>
       <td className="border px-4 py-2 text-center">
@@ -34,6 +35,12 @@ const MatchItem: React.FC<MatchItemProps> = ({ match }) => {
         {match.status === MatchStatus.IN_PROGRESS &&
           match.matchMinute !== undefined &&
           ` (${match.matchMinute}')`}
+        <button
+          onClick={() => handleDeleteMatch(match.id)}
+          className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+        >
+          X
+        </button>
       </td>
     </tr>
   );

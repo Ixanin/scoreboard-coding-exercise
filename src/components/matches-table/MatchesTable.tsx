@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import Flag from 'react-world-flags';
-import { Country } from '../../enums/';
-
-enum MatchStatus {
-  NOT_STARTED = 'NOT_STARTED',
-  HALF_TIME = 'HALF_TIME',
-  IN_PROGRESS = 'IN_PROGRESS',
-  FINISHED = 'FINISHED',
-}
+import { Country, MatchStatus } from '../../enums/';
 
 export const initialState = {
   matches: [

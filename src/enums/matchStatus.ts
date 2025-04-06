@@ -1,0 +1,6 @@
+export enum MatchStatus {
+  NOT_STARTED = 'NOT_STARTED',
+  HALF_TIME = 'HALF_TIME',
+  IN_PROGRESS = 'IN_PROGRESS',
+  FINISHED = 'FINISHED',
+}

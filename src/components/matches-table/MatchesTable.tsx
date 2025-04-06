@@ -9,30 +9,35 @@ export const initialState = {
       status: MatchStatus.NOT_STARTED,
       homeTeam: { name: 'Mexico', code: Country.Mexico, score: 0 },
       awayTeam: { name: 'Canada', code: Country.Canada, score: 0 },
+      matchMinute: 0,
     },
     {
       id: 1,
-      status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Spain', code: Country.Spain, score: 0 },
+      status: MatchStatus.IN_PROGRESS,
+      homeTeam: { name: 'Spain', code: Country.Spain, score: 1 },
       awayTeam: { name: 'Brazil', code: Country.Brazil, score: 0 },
+      matchMinute: 0,
     },
     {
       id: 2,
       status: MatchStatus.NOT_STARTED,
       homeTeam: { name: 'Germany', code: Country.Germany, score: 0 },
       awayTeam: { name: 'France', code: Country.France, score: 0 },
+      matchMinute: 0,
     },
     {
       id: 3,
-      status: MatchStatus.NOT_STARTED,
-      homeTeam: { name: 'Uruguay', code: Country.Uruguay, score: 0 },
-      awayTeam: { name: 'Italy', code: Country.Italy, score: 0 },
+      status: MatchStatus.IN_PROGRESS,
+      homeTeam: { name: 'Uruguay', code: Country.Uruguay, score: 2 },
+      awayTeam: { name: 'Italy', code: Country.Italy, score: 2 },
+      matchMinute: 0,
     },
     {
       id: 4,
       status: MatchStatus.NOT_STARTED,
       homeTeam: { name: 'Argentina', code: Country.Argentina, score: 0 },
       awayTeam: { name: 'Australia', code: Country.Australia, score: 0 },
+      matchMinute: 0,
     },
   ],
 };
@@ -49,6 +54,7 @@ const MatchesTable = () => {
             <th className="py-2">Home Team</th>
             <th className="py-2">Away Team</th>
             <th className="py-2">Score</th>
+            <th className="py-2">Status</th>
           </tr>
         </thead>
         <tbody>

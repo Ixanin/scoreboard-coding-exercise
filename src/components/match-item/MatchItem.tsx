@@ -1,5 +1,5 @@
 import React from 'react';
-import { Country } from '../../enums/';
+import { Country, MatchStatus } from '../../enums/';
 import TeamItem from '../team-item/TeamItem';
 
 interface Team {
@@ -13,6 +13,8 @@ interface MatchItemProps {
     id: number;
     homeTeam: Team;
     awayTeam: Team;
+    status: MatchStatus;
+    matchMinute: number;
   };
 }
 
@@ -27,6 +29,12 @@ const MatchItem: React.FC<MatchItemProps> = ({ match }) => {
       </td>
       <td className="border px-4 py-2 text-center">
         {match.homeTeam.score} - {match.awayTeam.score}
+      </td>
+      <td className="border px-4 py-2 text-center">
+        {match.status}
+        {match.status === MatchStatus.IN_PROGRESS &&
+          match.matchMinute !== undefined &&
+          ` (${match.matchMinute}')`}
       </td>
     </tr>
   );

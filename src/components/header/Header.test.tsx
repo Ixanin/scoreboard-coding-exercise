@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Header from './Header.tsx';
+import Header from './Header';
 import { describe, it } from 'vitest';
 
 describe('Header', () => {

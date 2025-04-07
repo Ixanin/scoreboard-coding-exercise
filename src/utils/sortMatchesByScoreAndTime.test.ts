@@ -1,6 +1,6 @@
 import { sortMatchesByScoreAndTime } from './sortMatchesByScoreAndTime';
 import { Match } from '../types/types';
-import { MatchStatus } from '../enums';
+import { CountryCode, MatchStatus } from '../enums';
 
 describe('sortMatchesByScoreAndTime', () => {
   const createMatch = (
@@ -11,15 +11,11 @@ describe('sortMatchesByScoreAndTime', () => {
   ): Match => ({
     id,
     homeTeam: {
-      id: '1',
-      name: 'Home Team',
-      code: 'HOME',
+      code: CountryCode.Australia,
       score: homeScore,
     },
     awayTeam: {
-      id: '2',
-      name: 'Away Team',
-      code: 'AWAY',
+      code: CountryCode.Belgium,
       score: awayScore,
     },
     startTime,

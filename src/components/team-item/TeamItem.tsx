@@ -8,7 +8,7 @@ interface TeamItemProps {
 
 const TeamItem: React.FC<TeamItemProps> = ({ code }) => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center flex-col">
       <Flag
         code={code}
         data-testid={`flag-${code}`}

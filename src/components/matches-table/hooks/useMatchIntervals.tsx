@@ -5,7 +5,12 @@ import {
   updateMatchStatus,
   MatchAction,
 } from '../reducers/matchesReducer';
-import { MaxIntervalDuration, MinIntervalDuration } from '../../../constants';
+import {
+  ChanceOfScoreChange,
+  MaxIntervalDuration,
+  MinIntervalDuration,
+  TickTime,
+} from '../../../constants';
 import { Match } from '../../../types/types.ts';
 
 export const useMatchIntervals = (
@@ -23,7 +28,7 @@ export const useMatchIntervals = (
         const intervalTime =
           Math.floor(Math.random() * MaxIntervalDuration) + MinIntervalDuration;
         const id = window.setInterval(() => {
-          const scoreChange = Math.random() > 0.7; // 30% chance of score change
+          const scoreChange = Math.random() > ChanceOfScoreChange;
 
           if (scoreChange) {
             const homeTeamScores = Math.random() > 0.5;
@@ -59,7 +64,7 @@ export const useMatchIntervals = (
 
     startCheckIntervalRef.current = window.setInterval(
       checkAndStartMatches,
-      1000
+      TickTime
     );
 
     setupScoreUpdates();

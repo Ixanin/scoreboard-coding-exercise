@@ -13,27 +13,17 @@ const MatchesTable = () => {
   useMatchIntervals(state.matches, dispatch);
 
   return (
-    <div className="matches-table my-6">
+    <div className="my-6">
       <h2 className="text-xl font-bold mb-4">Matches</h2>
-      <table className="min-w-full bg-white">
-        <thead>
-          <tr>
-            <th className="py-2">Home Team</th>
-            <th className="py-2">Away Team</th>
-            <th className="py-2">Score</th>
-            <th className="py-2">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {state.matches.map((match) => (
-            <MatchItem
-              key={match.id}
-              match={match}
-              handleDeleteMatch={handleDeleteMatch}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {state.matches.map((match) => (
+          <MatchItem
+            key={match.id}
+            match={match}
+            handleDeleteMatch={handleDeleteMatch}
+          />
+        ))}
+      </div>
     </div>
   );
 };

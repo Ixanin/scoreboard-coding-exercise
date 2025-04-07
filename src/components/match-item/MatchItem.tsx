@@ -43,9 +43,7 @@ const MatchItem: React.FC<MatchItemProps> = ({ match, handleDeleteMatch }) => {
         <div className="font-semibold text-[36px]">
           {match.homeTeam.score} - {match.awayTeam.score}
         </div>
-        <div>
-          <TeamItem code={match.awayTeam.code} />
-        </div>
+        <TeamItem code={match.awayTeam.code} />
       </div>
     </div>
   );

@@ -1,1 +1,2 @@
-export * from './createRandomInitialState.ts';
+export * from './createRandomInitialState';
+export * from './sortMatchesByScoreAndTime.ts';
